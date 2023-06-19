@@ -1,12 +1,9 @@
-import React from 'react'
+import React from 'react';
 interface Props {
-  content: string
+  content: string;
 }
 
-export const Text: React.FC<Props> = ({ content }): React.ReactElement => {
-  return (
-    <div className="">
-      <p>{content}</p>
-    </div>
-  )
-}
+const Text: React.FC<Props> = ({ content }): React.ReactElement => {
+  return <p>{content}</p>;
+};
+export default Text;

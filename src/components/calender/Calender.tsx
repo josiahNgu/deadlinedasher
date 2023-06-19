@@ -1,37 +1,62 @@
-import React, { useState } from 'react';
+import React from 'react';
 import classNames from 'classnames';
-const week = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
+import { weekDaysAbbreviations } from '../../types/WeekDayAbbrv';
+import { Task } from '../../types/Task';
 
-export const Calender: React.FC = (): React.ReactElement => {
-  const [selectedDay, setSelectedDay] = useState(0);
-  const onClick = (index: number) => {
-    setSelectedDay(index);
-  };
+interface Props {
+  setSelectedDay: (date: string) => void;
+  selectedDay: string;
+  tasks: Task[];
+}
+const Calender: React.FC<Props> = ({
+  setSelectedDay,
+  selectedDay,
+  tasks,
+}): React.ReactElement => {
   return (
-    <section className=" bg-white">
-      <div className="w-full flex justify-center">
-        {week.map((day, index) => {
+    <section className="text-white antialiased">
+      <div className="w-full flex justify-center text-sm">
+        {weekDaysAbbreviations.map((day, index) => {
           const dateTime = new Date();
-          const currentDay = dateTime.getDay() + index;
+          const currentDay = index - dateTime.getDay();
           const currentDate = new Date(
             dateTime.setDate(dateTime.getDate() + currentDay),
           );
           const date = currentDate.getDate();
+          const selectedDateString = selectedDay.split('T')[0];
+          const currentDateString = currentDate.toISOString().split('T')[0];
+          const hasTask = tasks.find(
+            (task) =>
+              new Date(task.endRepeat).toISOString().split('T')[0] ===
+              currentDateString,
+          );
           return (
-            <div
-              className={classNames(
-                'flex text-center flex-col mx-2 p-2 hover:cursor-pointer',
-                {
-                  'rounded-lg border border-gray-500':
-                    date === new Date().getDate(),
-                  'bg-slate-600': selectedDay === index,
-                },
+            <div key={index} className="flex text-center flex-col mx-2 p-2">
+              <span className="mb-1">{day}</span>
+              <span
+                className={classNames('mt-1 p-2 hover:cursor-pointer', {
+                  'rounded-full border border-muji-white':
+                    currentDateString ===
+                    new Date().toISOString().split('T')[0],
+                  'bg-muji-white rounded-full text-purple-500':
+                    selectedDateString === currentDateString,
+                })}
+                onClick={() => setSelectedDay(currentDate.toISOString())}
+              >
+                {date}
+              </span>
+              {hasTask && (
+                <div className="flex justify-center mt-1">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 10 10"
+                    width="10"
+                    height="10"
+                  >
+                    <circle cx="5" cy="5" r="2" fill="white" />
+                  </svg>
+                </div>
               )}
-              key={index}
-              onClick={() => onClick(index)}
-            >
-              <span>{day}</span>
-              <span>{date}</span>
             </div>
           );
         })}
@@ -39,3 +64,4 @@ export const Calender: React.FC = (): React.ReactElement => {
     </section>
   );
 };
+export default Calender;

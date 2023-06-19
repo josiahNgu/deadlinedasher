@@ -1,8 +1,9 @@
-import React from 'react'
+import React from 'react';
 interface Props {
-  children: React.ReactNode
+  children: React.ReactNode;
 }
 
-export const Layout: React.FC<Props> = ({ children }): React.ReactElement => {
-  return <div className="">{children}</div>
-}
+const Layout: React.FC<Props> = ({ children }): React.ReactElement => {
+  return <div className="h-100 flex justify-center flex-col">{children}</div>;
+};
+export default Layout;
