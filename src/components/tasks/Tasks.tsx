@@ -3,6 +3,9 @@ import { useTasksContext } from '../../context/context';
 import { Task } from '../../types/Task';
 import Text from '../text/Text';
 import Button from '../button/Button';
+import TaskItem from './TaskItem';
+import { v4 as uuidv4 } from 'uuid';
+
 interface Props {
   selectedDay: string;
 }
@@ -31,15 +34,17 @@ const Tasks: React.FC<Props> = ({ selectedDay }): React.ReactElement => {
   const addNewTask = (): void => {
     const fakeTask: Task = {
       color: 'green',
-      id: '',
+      id: uuidv4(),
       isoString: new Date().toISOString(),
-      name: '',
+      name: 'LeetCode',
       sessionTime: 0,
       shortBreakTime: 0,
       longBreakTime: 0,
       sessionsPerRound: 0,
-      repeat: [],
+      repeat: ['M', 'T'],
       endRepeat: new Date().toISOString(),
+      completed: false,
+      remainingTime: 100,
     };
     dispatch({ type: 'CREATE', payload: fakeTask });
   };
@@ -47,7 +52,13 @@ const Tasks: React.FC<Props> = ({ selectedDay }): React.ReactElement => {
   return (
     <>
       {selectedDayTasks.length ? (
-        'Have Item'
+        selectedDayTasks.map((task) => (
+          <TaskItem
+            key={task.id}
+            task={task}
+            onClick={() => console.log(task.id)}
+          />
+        ))
       ) : (
         <EmptyTaskMessage CTA={addNewTask} />
       )}

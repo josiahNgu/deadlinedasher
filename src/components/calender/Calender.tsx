@@ -14,7 +14,7 @@ const Calender: React.FC<Props> = ({
   tasks,
 }): React.ReactElement => {
   return (
-    <section className="text-white antialiased">
+    <section className="text-white antialiased bg-khaki">
       <div className="w-full flex justify-center text-sm">
         {weekDaysAbbreviations.map((day, index) => {
           const dateTime = new Date();
@@ -38,7 +38,7 @@ const Calender: React.FC<Props> = ({
                   'rounded-full border border-muji-white':
                     currentDateString ===
                     new Date().toISOString().split('T')[0],
-                  'bg-muji-white rounded-full text-purple-500':
+                  'bg-muji-white rounded-full text-khaki':
                     selectedDateString === currentDateString,
                 })}
                 onClick={() => setSelectedDay(currentDate.toISOString())}

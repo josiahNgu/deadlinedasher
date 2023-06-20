@@ -11,4 +11,7 @@ export interface Task {
   color: string;
   repeat: WeekDaysAbbreviations;
   endRepeat: string;
+  completed: boolean;
+  // in sec
+  remainingTime: number;
 }

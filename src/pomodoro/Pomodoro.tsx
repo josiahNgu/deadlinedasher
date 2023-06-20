@@ -7,7 +7,7 @@ import { useTasksContext } from '../context/context';
 
 const Pomodoro: React.FC = (): React.ReactElement => {
   //  want to set it with time zone and in tasks we calculate the offfset using the ISO time
-  const [selectedDay, setSelectedDay] = useState('');
+  const [selectedDay, setSelectedDay] = useState(new Date().toISOString());
   const { state: userTasks } = useTasksContext();
 
   //   const setUserCurrentDay = (date: Date) => {};
