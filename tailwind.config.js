@@ -14,6 +14,7 @@ module.exports = {
         champagne: '#F1E0C5',
         cardinal: '#C5304B',
         prose: '#1e293b',
+        blue: '#3962EF',
       },
     },
   },

@@ -137,7 +137,7 @@ const TaskItem: React.FC<Props> = ({
                     message: 'Please enter a number between 1 and 45',
                   })}
                 />
-                <Button type="pill" text="mins"></Button>
+                <Button className="self-end" type="pill" text="mins"></Button>
               </>
             )}
             {!isEditing && (
@@ -165,7 +165,12 @@ const TaskItem: React.FC<Props> = ({
                     message: 'Please enter a number between 1 and 10',
                   })}
                 />
-                <Button disabled type="pill" text="mins"></Button>
+                <Button
+                  className="self-end"
+                  disabled
+                  type="pill"
+                  text="mins"
+                ></Button>
               </>
             )}
             {!isEditing && (
@@ -195,7 +200,12 @@ const TaskItem: React.FC<Props> = ({
                     message: 'Please enter a number between 1 and 30',
                   })}
                 />
-                <Button disabled type="pill" text="mins"></Button>
+                <Button
+                  className="self-end"
+                  disabled
+                  type="pill"
+                  text="mins"
+                ></Button>
               </>
             )}
             {!isEditing && (
@@ -225,13 +235,26 @@ const TaskItem: React.FC<Props> = ({
                   label={'Sessions Per Round:'}
                   name={'sessionPerRound'}
                 />
-                <Button disabled type="pill" text="rounds"></Button>
+                <Button
+                  className="self-end"
+                  disabled
+                  type="pill"
+                  text="rounds"
+                ></Button>
               </>
             )}
           </div>
-          <button onClick={onFormSubmit} className="bg-white">
-            Save
-          </button>
+          {isEditing && (
+            <>
+              <hr className="w-full border-white my-4" />
+              <Button
+                className="block mt-2 self-end border border-blue-500 text-blue hover:bg-blue hover:text-white px-4 py-2 hover:bg-opacity-80 rounded-full"
+                type="default"
+                onClick={onFormSubmit}
+                text="Save"
+              ></Button>
+            </>
+          )}
         </div>
         <p>{success && 'Task added successfully!'}</p>
       </form>

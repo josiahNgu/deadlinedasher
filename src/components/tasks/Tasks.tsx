@@ -35,7 +35,10 @@ const CreateTaskMessage: React.FC = (): React.ReactElement => {
     <>
       <div className="flex flex-col items-center">
         {/* <Text content="Create a new task" /> */}
-        <Button text="Create New Task" onClick={() => setIsAddTask(true)} />
+        <Button
+          text="Create New Task"
+          onClick={() => setIsAddTask((prevState) => !prevState)}
+        />
         {isAddTask && (
           <TaskItem
             onSubmit={(task: Task) => {
