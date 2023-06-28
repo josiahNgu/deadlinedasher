@@ -4,6 +4,6 @@ interface Props {
 }
 
 const Layout: React.FC<Props> = ({ children }): React.ReactElement => {
-  return <div className="h-100 flex justify-center flex-col">{children}</div>;
+  return <div className="h-100 justify-center flex-col grid">{children}</div>;
 };
 export default Layout;

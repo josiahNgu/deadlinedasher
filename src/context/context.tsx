@@ -6,8 +6,8 @@ interface State {
 }
 
 interface Action {
-  type: 'CREATE' | 'UPDATE' | 'DELETE';
-  payload: Task;
+  type: 'CREATE' | 'UPDATE' | 'DELETE' | 'CLEANUP';
+  payload: Task | Task[];
 }
 const USER_TASKS = 'USER_TASKS_LIST';
 
@@ -23,25 +23,30 @@ const reducer = (state: State, action: Action): State => {
   switch (action.type) {
     case 'CREATE':
       console.log('action', action);
-      setTasksToLocalStorage([...state.tasks, action.payload]);
-      return { ...state, tasks: [...state.tasks, action.payload] };
+      setTasksToLocalStorage([...state.tasks, action.payload as Task]);
+      return { ...state, tasks: [...state.tasks, action.payload as Task] };
     case 'UPDATE':
       // eslint-disable-next-line no-case-declarations
       const updatedTasks = state.tasks.map((task) =>
-        task.id === action.payload.id ? { ...task, ...action.payload } : task,
+        task.id === (action.payload as Task).id
+          ? { ...task, ...action.payload }
+          : task,
       );
       setTasksToLocalStorage(updatedTasks);
       return { ...state, tasks: updatedTasks };
     case 'DELETE':
       // eslint-disable-next-line no-case-declarations
       const filteredTasks = state.tasks.filter(
-        (task) => task.id !== action.payload.id,
+        (task) => task.id !== (action.payload as Task).id,
       );
       setTasksToLocalStorage(filteredTasks);
       return {
         ...state,
         tasks: filteredTasks,
       };
+    case 'CLEANUP':
+      setTasksToLocalStorage([...(action.payload as Task[])]);
+      return { ...state };
     default:
       return state;
   }
