@@ -13,6 +13,7 @@ module.exports = {
         khaki: '#C9B79C',
         champagne: '#F1E0C5',
         cardinal: '#C5304B',
+        prose: '#1e293b',
       },
     },
   },
