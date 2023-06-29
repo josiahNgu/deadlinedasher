@@ -1,2 +1,3 @@
 # Get to work ⛑
-prod url: https://deadlinedasher.life/
+## prod url: https://deadlinedasher.life/
+Are you struggling to stay focused on your tasks? Then this app might be exactly what you need. It uses the Pomodoro technique to help you get things done, inspired by the need to solve leet code questions for interviews. The app has a clean and intuitive interface, making it easy to use and navigate. All you have to do is input your task and set the timer for around 25 minutes. The app will block out any distractions during this time, allowing you to focus on your task completely. Once the timer is up, take a short break before starting the next Pomodoro session.
